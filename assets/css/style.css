@@ -7,5 +7,5 @@
 }
 
 body {
-    background-color: yellow;
+    background-color: var(--background-start);
 }
