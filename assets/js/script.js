@@ -7,8 +7,11 @@ document.addEventListener("DOMContentLoaded", function () {
   function startGame() {
     gameActive = true;
     if (gameActive === true) {
-        startWindow.style.display = 'none';
-        gameWindow.style.display = 'flex';
+       // startWindow.style.display = 'none';
+       // gameWindow.style.display = 'flex';
+
+       /* Kommenterat ut koden eftersom den inte är funktionell just nu då vi inte lagt
+          till någon styling än. /sjp */
     }
   }
     startBtn.addEventListener('click', function () {
