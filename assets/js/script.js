@@ -1,9 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
   const startWindow = document.getElementById("start-window");
   const gameWindow = document.getElementById("game-window");
-  const question = document.getElementById("question")
+  const question = document.getElementById("question");
   const startBtn = document.getElementById("start-btn");
   const input = document.getElementById("name-input");
+
+  
   // const url = "https://opentdb.com/api.php?amount=50&category=9";
   const url = "https://opentdb.com/api.php?amount=10&category=9&difficulty=medium&type=multiple";
 
@@ -21,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const data = await response.json();
       console.log(data);
       // return data.results;
-      showQuestions(data.results)
+      showQuestion(data.results);
 
     } catch(error) {
       console.log(error);
@@ -29,12 +31,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
   }
 
-  function showQuestions(data) {
-    for (let i=0; i < data.length; i++){
-      console.log(data[i].question);
-    }
+  function showQuestion(data) {
     
-  }
+    let random = Math.floor(Math.random() * data.length);
+    let randomQuestion = "";
+    
+    for (let i = 0; i < data.length; i++){
+      
+      if (i === random) {
+        console.log(data[i].question);
+        randomQuestion = data[i].question;
+      };
+        
+    };
+
+    question.innerHTML = randomQuestion;
+
+  };
+
+    /* function displayQuestion(question)  */
 
   
 
