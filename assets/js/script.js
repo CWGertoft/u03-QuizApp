@@ -8,15 +8,14 @@ document.addEventListener("DOMContentLoaded", function () {
     let userName = "";
     let gameActive = false;
 
+    let wrongAnswer = "";
+    let correctAnswer = "";
 
     const question = document.getElementById("question");
     const option1 = document.getElementById("option1");
     const option2 = document.getElementById("option2");
 
-    
-    // const url = "https://opentdb.com/api.php?amount=50&category=9";
-    // const url = "https://opentdb.com/api.php?amount=10&category=9&difficulty=medium&type=multiple";
-    const url = "https://opentdb.com/api.php?amount=10&category=9&difficulty=medium&type=boolean";
+    const url = "./assets/quizQuestions.json";
 
 
 
@@ -47,8 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
         let random = Math.floor(Math.random() * data.length);
         let randomQuestion = "";
-        let wrongAnswer = "";
-        let correctAnswer = "";
+        
 
         let optionTrue = "false";
         let optionFalse = "";
@@ -60,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 randomQuestion = data[i].question;
                 console.log(data[i].question);
 
-                wrongAnswer = data[i].incorrect_answers.pop();
+                wrongAnswer = data[i].incorrect_answer;
 
                 correctAnswer = data[i].correct_answer;
 
