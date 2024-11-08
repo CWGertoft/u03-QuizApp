@@ -10,6 +10,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let wrongAnswer = "";
     let correctAnswer = "";
+    let optionTrue = "";
+    let optionFalse = "";
+
+    let score = 0;
 
     const question = document.getElementById("question");
     const option1 = document.getElementById("option1");
@@ -31,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
             };
 
             const data = await response.json();
-            console.log(data);
+            //console.log(data);
 
             showQuestion(data.results);
 
@@ -47,16 +51,13 @@ document.addEventListener("DOMContentLoaded", function () {
         let random = Math.floor(Math.random() * data.length);
         let randomQuestion = "";
         
-
-        let optionTrue = "false";
-        let optionFalse = "";
         
         for (let i = 0; i < data.length; i++){
         
             if (i === random) {
             
                 randomQuestion = data[i].question;
-                console.log(data[i].question);
+                //console.log(data[i].question);
 
                 wrongAnswer = data[i].incorrect_answer;
 
@@ -95,6 +96,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
     };
 
+    // Gör alternativen klickbara samt jämför valet med rätt eller fel svar
+    // Ger poäng för rätt svar och laddar in en ny fråga
+    // För fel svar händer inget med poängen, laddar in ny fråga.
+    option1.addEventListener('click', function() {
+        //console.log("click");
+
+        if(optionTrue === correctAnswer) {
+            score++;
+            console.log("Correct");
+            showQuestion(getQuizData());
+
+        } else if (optionTrue === wrongAnswer){
+            
+            console.log("Wrong");
+            showQuestion(getQuizData());
+        };
+
+        
+    });
+
+    option2.addEventListener('click', function() {
+        
+        if(optionFalse === correctAnswer) {
+            score++;
+            console.log("Correct");
+            showQuestion(getQuizData());
+
+        } else if (optionFalse === wrongAnswer){
+            
+            console.log("Wrong");
+            showQuestion(getQuizData());
+        };
+    });
 
     getQuizData();
 
