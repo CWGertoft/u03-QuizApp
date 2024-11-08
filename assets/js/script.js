@@ -51,7 +51,6 @@ document.addEventListener("DOMContentLoaded", function () {
         let random = Math.floor(Math.random() * data.length);
         let randomQuestion = "";
         
-        
         for (let i = 0; i < data.length; i++){
         
             if (i === random) {
@@ -103,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
         //console.log("click");
 
         if(optionTrue === correctAnswer) {
+            
             score++;
             console.log("Correct");
             showQuestion(getQuizData());
