@@ -73,7 +73,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 } else if (correctAnswer === "True") {
 
                     optionTrue = correctAnswer;
-
                 };
                 
                 if (wrongAnswer === "False") {
@@ -119,6 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
     option2.addEventListener('click', function() {
         
         if(optionFalse === correctAnswer) {
+            
             score++;
             console.log("Correct");
             showQuestion(getQuizData());
@@ -134,9 +134,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     function startGame() {
+
         userName = input.value;
         console.log(userName);
+
         gameActive = true;
+
         if (gameActive === true) {
         // startWindow.style.display = 'none';
         // gameWindow.style.display = 'flex';
@@ -147,8 +150,8 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     startBtn.addEventListener('click', function() {
+        
         startGame();
-
         console.log('click!');
     });
 });
