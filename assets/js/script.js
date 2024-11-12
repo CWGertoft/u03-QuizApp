@@ -15,6 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let score = 0;
 
+    let count = 10;
+
     const question = document.getElementById("question");
     const option1 = document.getElementById("option1");
     const option2 = document.getElementById("option2");
@@ -132,6 +134,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     getQuizData();
 
+    const interval = setInterval(() => {
+
+        count--;
+
+        const countdown = document.getElementById ("countdown")
+
+        if (count < 0) {
+            clearInterval(interval);
+            document.getElementById("countdown").innerText = "Time has run out!";
+          }
+        
+    }, 2000);
+
+    console.log(interval);
+
 
     function startGame() {
 
@@ -154,4 +171,6 @@ document.addEventListener("DOMContentLoaded", function () {
         startGame();
         console.log('click!');
     });
+
+
 });
