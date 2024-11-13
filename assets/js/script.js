@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let optionFalse = "";
 
   let score = 0;
+  let questionCount = 0; // Ny räknare för antal besvarade frågor
 
   const question = document.getElementById("question");
   const option1 = document.getElementById("option1");
@@ -50,19 +51,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
         correctAnswer = data[i].correct_answer;
 
-        /* För att rätt och fel svar inte ska komma i en bestämd ordning
-                   så läggs dom i en variabel som är för alternativet true och
-                   en variabel för alternativet false. /sjp */
-
-        if (wrongAnswer === "True") {
-          optionTrue = wrongAnswer;
-        } else if (correctAnswer === "True") {
+        // Slumpa ordning på alternativen
+        if (Math.random() > 0.5) {  
           optionTrue = correctAnswer;
-        }
-
-        if (wrongAnswer === "False") {
           optionFalse = wrongAnswer;
-        } else if (correctAnswer === "False") {
+        } else {
+          optionTrue = wrongAnswer;
           optionFalse = correctAnswer;
         }
       }
@@ -83,22 +77,28 @@ document.addEventListener("DOMContentLoaded", function () {
     if (optionTrue === correctAnswer) {
       score++;
       console.log("Correct");
-      showQuestion(getQuizData());
-    } else if (optionTrue === wrongAnswer) {
+    } else {
       console.log("Wrong");
-      showQuestion(getQuizData());
     }
+
+    // Öka frågeräknaren & Kontrollera om spelet är slut
+    questionCount++;
+    afterLastQuestion();
+    getQuizData();
   });
 
-  option2.addEventListener("click", function () {
+  option2.addEventListener("click", async function () {
     if (optionFalse === correctAnswer) {
       score++;
       console.log("Correct");
-      showQuestion(getQuizData());
-    } else if (optionFalse === wrongAnswer) {
+    } else {
       console.log("Wrong");
-      showQuestion(getQuizData());
     }
+
+    // Öka frågeräknaren & Kontrollera om spelet är slut
+    questionCount++;
+    afterLastQuestion();
+    getQuizData();
   });
 
   getQuizData();
@@ -121,4 +121,27 @@ document.addEventListener("DOMContentLoaded", function () {
     startGame();
     console.log("click!");
   });
+
+  // Visa "Game Over" när spelaren har svarat på 10 frågor
+  function afterLastQuestion() {
+    if (questionCount >= 10) {
+      showGameOver();
+    }
+  }
+
+  function showGameOver() {
+    document.getElementById("final-score").textContent = `Your final score is: ${score}`; // Sätt poängen i popupen
+    document.getElementById("game-over").style.display = "flex";
+  }
+
+  function restartGame() {
+    score = 0;
+
+    // Återställ frågeräknaren
+    questionCount = 0;
+    document.getElementById("game-over").style.display = "none";
+    getQuizData(); // Ladda om frågorna efter omstart
+  }
+
+  document.getElementById("restart-btn").addEventListener("click", restartGame);
 });
