@@ -14,6 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let score = 0;
 
+  let count = 10;
+  let countdownInterval = "";
+
   const question = document.getElementById("question");
   const option1 = document.getElementById("option1");
   const option2 = document.getElementById("option2");
@@ -72,6 +75,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     option1.innerText = optionTrue;
     option2.innerText = optionFalse;
+
+    startCountdown();
   }
 
   // Gör alternativen klickbara samt jämför valet med rätt eller fel svar
@@ -121,4 +126,26 @@ document.addEventListener("DOMContentLoaded", function () {
     startGame();
     console.log("click!");
   });
+
+  function startCountdown() {
+
+    count = 10; //Återställer räknaren /SJ
+    document.getElementById("countdown").innerText = `Time left: ${count}`;
+
+    clearInterval(countdownInterval);
+
+
+    countdownInterval = setInterval (() => {
+      count--;
+      document.getElementById("countdown").innerText = `Time left: ${count}`; 
+
+      if (count <= 0) {
+        clearInterval(countdownInterval);
+        document.getElementById("countdown").innertext = "Time out!";
+        showQuestion(getQuizData());
+      }
+    },1000);
+  };
+
 });
+
