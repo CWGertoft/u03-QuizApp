@@ -46,6 +46,7 @@ fieldset {
   padding: 1.8rem;
   background-color: white;
   font-size: 1.2rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.8);
 }
 
 #name-input:focus {
@@ -72,6 +73,7 @@ label {
   width: 90%;
   margin-bottom: 10%;
   transition: 0.3s;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.8);
 }
 
 #start-btn:hover {
@@ -127,4 +129,5 @@ label {
   background-color: rgb(97, 210, 157);
   list-style: none;
   cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.8);
 }
