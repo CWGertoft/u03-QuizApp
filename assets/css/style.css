@@ -164,3 +164,14 @@ label {
     background-color: yellow;
   
   }
+
+#countdown {
+  color: #ffe1db;
+  background-color: #156064;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 35px;
+  width: 12vw;
+  text-align: center;
+  font-weight: 700;
+}
