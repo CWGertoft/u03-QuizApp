@@ -1,4 +1,8 @@
+import { saveToLocalStorage } from "./localStorage.js";
+import { showLeaderBoard } from "./localStorage.js";
+
 document.addEventListener("DOMContentLoaded", function () {
+
   const startWindow = document.getElementById("start-window");
   const gameWindow = document.getElementById("game-window");
   const startBtn = document.getElementById("start-btn");
@@ -17,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let score = 0;
 
   let count = 10;
-  let countdownInterval = "";
+  let countdownInterval;
 
   let question = document.getElementById("question");
   const option1 = document.getElementById("option1");
@@ -158,6 +162,7 @@ document.addEventListener("DOMContentLoaded", function () {
         getQuestions();
 
         if (currentQuestion >= 10) {
+
           showGameOver();
         };
       };
@@ -165,10 +170,13 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   function showGameOver() {
+    localStorage.setItem("mostRecentScore", score);
     document.getElementById(
       "final-score"
     ).textContent = `Your final score is: ${score}`; // Sätt poängen i popupen
-    localStorage.setItem("mostRecentScore", score);
+    
+    saveToLocalStorage();
+    showLeaderBoard();
     document.getElementById("game-over").style.display = "flex";
   };
 
