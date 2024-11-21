@@ -38,61 +38,57 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function startGame() {
-
     gameActive = true;
 
-    if(gameActive === true) {
-
+    if (gameActive === true) {
       startWindow.style.display = "none";
       gameWindow.style.display = "flex";
       getQuestions();
-    };
-  };
+    }
+  }
 
-  startBtn.addEventListener('click', function() {
-
-    if((input.value === "") || (input.value === null)) {
-      alert("Please enter a name!")
+  startBtn.addEventListener("click", function () {
+    if (input.value === "" || input.value === null) {
+      alert("Please enter a name!");
     } else {
       userName = input.value;
       startGame();
-    };
+    }
 
     console.log(userName);
   });
 
   function showQuestion(data) {
-
     if (gameActive === true) {
       for (let i = 0; i < data.length; i++) {
         // console.log(data[i].question);
         if (i === currentQuestion) {
           question.innerHTML = data[i].question;
-  
+
           wrongAnswer = data[i].incorrect_answer;
-  
+
           correctAnswer = data[i].correct_answer;
-  
+
           if (wrongAnswer === "True") {
             optionTrue = wrongAnswer;
           } else if (correctAnswer === "True") {
             optionTrue = correctAnswer;
           }
-  
+
           if (wrongAnswer === "False") {
             optionFalse = wrongAnswer;
           } else if (correctAnswer === "False") {
             optionFalse = correctAnswer;
           }
-  
+
           option1.innerText = optionTrue;
           option2.innerText = optionFalse;
-        };
-      };
-  
+        }
+      }
+
       startCountdown();
-    };
-  };
+    }
+  }
 
   option1.addEventListener("click", function () {
     //console.log("click");
@@ -107,14 +103,10 @@ document.addEventListener("DOMContentLoaded", function () {
     currentQuestion++;
 
     if (currentQuestion >= 10) {
-
       showGameOver();
-
     } else {
-
       getQuestions();
-    };
-
+    }
   });
 
   option2.addEventListener("click", function () {
@@ -128,27 +120,21 @@ document.addEventListener("DOMContentLoaded", function () {
     currentQuestion++;
 
     if (currentQuestion >= 10) {
-
       showGameOver();
-
     } else {
-
       getQuestions();
-    };
-    
+    }
   });
 
   function startCountdown() {
-
     count = 10; //Återställer räknaren /SJ
     document.getElementById("countdown").innerText = `Time left: ${count}`;
 
     clearInterval(countdownInterval);
 
-
-    countdownInterval = setInterval (() => {
+    countdownInterval = setInterval(() => {
       count--;
-      document.getElementById("countdown").innerText = `Time left: ${count}`; 
+      document.getElementById("countdown").innerText = `Time left: ${count}`;
 
       if (count <= 0) {
         clearInterval(countdownInterval);
@@ -157,15 +143,16 @@ document.addEventListener("DOMContentLoaded", function () {
         getQuestions();
 
         if (currentQuestion >= 10) {
-
           showGameOver();
-        };
-      };
-    },1000);
-  };
+        }
+      }
+    }, 1000);
+  }
 
   function showGameOver() {
-    document.getElementById("final-score").textContent = `Your final score is: ${score}`; // Sätt poängen i popupen
+    document.getElementById(
+      "final-score"
+    ).textContent = `Your final score is: ${score}`; // Sätt poängen i popupen
     document.getElementById("game-over").style.display = "flex";
   }
 
@@ -181,4 +168,75 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   document.getElementById("restart-btn").addEventListener("click", restartGame);
+
+  /*-----FUNCTION Instructions Modal-----*/
+  function instructionsModal() {
+    const gameInstructions = document.getElementById("instructions");
+
+    gameInstructions.addEventListener("click", () => {
+      /*-----Modal Div-----*/
+      const instructionsDiv = document.createElement("div");
+      instructionsDiv.classList.add("instructionsDiv");
+
+      const modalText = document.createElement("h4");
+      modalText.textContent = "Instructions:";
+      modalText.style.marginBottom = "15px";
+      modalText.style.fontSize = "2rem";
+      modalText.style.borderBottom = "2px dotted black";
+
+      instructionsDiv.appendChild(modalText);
+
+      /*-----Modal-Header-Text-----*/
+      const modalHeader = document.createElement("ul");
+      instructionsDiv.appendChild(modalHeader);
+
+      modalHeader.style.borderBottom = "1px solid black";
+
+      const instructionList = [
+        { text: `Enter your name and press the 'Start Quiz' to begin.` },
+        { text: `You can answer a question with True or False.` },
+        {
+          text: `You will have 10 seconds to answer the question before the timer runs out.`,
+        },
+        {
+          text: `Once you answer or time runs out, the new question will appear!`,
+        },
+        {
+          text: `Your final score will be displayed at the end of the quiz.`,
+        },
+        { text: `Stay focused and enjoy the challenge!` },
+      ];
+
+      const listItems = instructionList.map((item) => {
+        const instructionsLi = document.createElement("li");
+        instructionsLi.style.textAlign = "left";
+        instructionsLi.style.margin = "10px";
+        instructionsLi.textContent = item.text;
+
+        return instructionsLi;
+      });
+
+      listItems.forEach((li) => modalHeader.appendChild(li));
+
+      /*-----Paragraph-----*/
+      const modulParagraph = document.createElement("p");
+      modulParagraph.innerHTML = "Good luck!:)";
+      instructionsDiv.appendChild(modulParagraph);
+
+      /*-----Module close button-----*/
+      const closeButton = document.createElement("button");
+      closeButton.classList.add("modulBtn");
+      closeButton.innerText = "Close the instructions";
+
+      closeButton.addEventListener("click", () => {
+        document.body.removeChild(instructionsDiv);
+      });
+      instructionsDiv.appendChild(closeButton);
+
+      /*-----Append the modal to the body-----*/
+      document.body.appendChild(instructionsDiv);
+    });
+  }
+
+  instructionsModal();
 });
