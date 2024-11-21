@@ -31,16 +31,14 @@ document.addEventListener("DOMContentLoaded", function () {
       //console.log(data);
 
       showQuestion(data.results);
+
     } catch (error) {
+
       console.log(error);
-    }
-  }
+    };
+  };
 
 
-
-
-  
-  /*---Change the code----*/
   function showQuestion(data) {
     let random = Math.floor(Math.random() * data.length);
     let randomQuestion = "";
@@ -62,21 +60,21 @@ document.addEventListener("DOMContentLoaded", function () {
           optionTrue = wrongAnswer;
         } else if (correctAnswer === "True") {
           optionTrue = correctAnswer;
-        }
+        };
 
         if (wrongAnswer === "False") {
           optionFalse = wrongAnswer;
         } else if (correctAnswer === "False") {
           optionFalse = correctAnswer;
-        }
-      }
-    }
+        };
+      };
+    };
 
     question.innerHTML = randomQuestion;
 
     option1.innerText = optionTrue;
     option2.innerText = optionFalse;
-  }
+  };
 
   // Gör alternativen klickbara samt jämför valet med rätt eller fel svar
   // Ger poäng för rätt svar och laddar in en ny fråga
@@ -96,30 +94,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
   option2.addEventListener("click", function () {
     if (optionFalse === correctAnswer) {
+
       score++;
       console.log("Correct");
+
       showQuestion(getQuizData());
+
     } else if (optionFalse === wrongAnswer) {
+
       console.log("Wrong");
       showQuestion(getQuizData());
-    }
+    };
   });
 
   getQuizData();
 
   function startGame() {
-    userName = input.value;
-    console.log(userName);
+        userName = input.value;
+        console.log(userName);
 
-    gameActive = true;
+        gameActive = true;
 
-    if (gameActive === true) {
-      // startWindow.style.display = "none";
-      // gameWindow.style.display = 'flex';
-      /* Kommenterat ut koden eftersom den inte är funktionell just nu då vi inte lagt
-            till någon styling än. /sjp */
-    }
-  }
+        if (gameActive === true) {
+        // startWindow.style.display = "none";
+        // gameWindow.style.display = 'flex';
+        /* Kommenterat ut koden eftersom den inte är funktionell just nu då vi inte lagt
+                till någon styling än. /sjp */
+        };
+  };
 
   startBtn.addEventListener("click", function () {
     startGame();

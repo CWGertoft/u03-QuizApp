@@ -34,8 +34,8 @@ document.addEventListener("DOMContentLoaded", function () {
       // console.log(data);
     } catch (error) {
       console.log(error, "error");
-    }
-  }
+    };
+  };
 
   function startGame() {
     gameActive = true;
@@ -44,8 +44,8 @@ document.addEventListener("DOMContentLoaded", function () {
       startWindow.style.display = "none";
       gameWindow.style.display = "flex";
       getQuestions();
-    }
-  }
+    };
+  };
 
   startBtn.addEventListener("click", function () {
     if (input.value === "" || input.value === null) {
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       userName = input.value;
       startGame();
-    }
+    };
 
     console.log(userName);
   });
@@ -73,22 +73,22 @@ document.addEventListener("DOMContentLoaded", function () {
             optionTrue = wrongAnswer;
           } else if (correctAnswer === "True") {
             optionTrue = correctAnswer;
-          }
+          };
 
           if (wrongAnswer === "False") {
             optionFalse = wrongAnswer;
           } else if (correctAnswer === "False") {
             optionFalse = correctAnswer;
-          }
+          };
 
           option1.innerText = optionTrue;
           option2.innerText = optionFalse;
-        }
-      }
+        };
+      };
 
       startCountdown();
-    }
-  }
+    };
+  };
 
   option1.addEventListener("click", function () {
     //console.log("click");
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Correct");
     } else if (optionTrue === wrongAnswer) {
       console.log("Wrong");
-    }
+    };
 
     currentQuestion++;
 
@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
       showGameOver();
     } else {
       getQuestions();
-    }
+    };
   });
 
   option2.addEventListener("click", function () {
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Correct");
     } else if (optionFalse === wrongAnswer) {
       console.log("Wrong");
-    }
+    };
 
     currentQuestion++;
 
@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
       showGameOver();
     } else {
       getQuestions();
-    }
+    };
   });
 
   function startCountdown() {
@@ -144,17 +144,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (currentQuestion >= 10) {
           showGameOver();
-        }
-      }
+        };
+      };
     }, 1000);
-  }
+  };
 
   function showGameOver() {
     document.getElementById(
       "final-score"
     ).textContent = `Your final score is: ${score}`; // Sätt poängen i popupen
     document.getElementById("game-over").style.display = "flex";
-  }
+  };
 
   function restartGame() {
     score = 0;
@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("game-over").style.display = "none";
     gameWindow.style.display = "none";
     startWindow.style.display = "flex";
-  }
+  };
 
   document.getElementById("restart-btn").addEventListener("click", restartGame);
 
@@ -193,18 +193,15 @@ document.addEventListener("DOMContentLoaded", function () {
       modalHeader.style.borderBottom = "1px solid black";
 
       const instructionList = [
-        { text: `Enter your name and press the 'Start Quiz' to begin.` },
-        { text: `You can answer a question with True or False.` },
+        { text: `Enter your name before pressing the 'Start Quiz' to begin.` },
+        { text: `There is a total of 10 questions with the optioins True or False.` },
         {
-          text: `You will have 10 seconds to answer the question before the timer runs out.`,
-        },
+          text: `You will have 10 seconds to answer the question before the timer runs out.`},
         {
-          text: `Once you answer or time runs out, the new question will appear!`,
-        },
+          text: `Once you answer or time runs out, you will automatically move on to the next question`},
         {
-          text: `Your final score will be displayed at the end of the quiz.`,
-        },
-        { text: `Stay focused and enjoy the challenge!` },
+          text: `Your final score will be displayed at the end of the quiz.`},
+        { text: `Stay focused and enjoy the challenge!`}
       ];
 
       const listItems = instructionList.map((item) => {
@@ -236,7 +233,7 @@ document.addEventListener("DOMContentLoaded", function () {
       /*-----Append the modal to the body-----*/
       document.body.appendChild(instructionsDiv);
     });
-  }
+  };
 
   instructionsModal();
 });
