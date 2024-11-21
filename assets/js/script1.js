@@ -217,7 +217,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       /*-----Paragraph-----*/
       const modulParagraph = document.createElement("p");
-      modulParagraph.innerHTML = "Good luck!:)";
+      modulParagraph.innerHTML = "Good luck! :)";
+      modulParagraph.style.fontWeight = "bold";
       instructionsDiv.appendChild(modulParagraph);
 
       /*-----Module close button-----*/
