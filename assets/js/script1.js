@@ -2,9 +2,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const startWindow = document.getElementById("start-window");
   const gameWindow = document.getElementById("game-window");
   const startBtn = document.getElementById("start-btn");
-
   const input = document.getElementById("name-input");
-  let userName = "";
+
+  const loggedIn = document.getElementById("logged-in");
+
+  /* let userName = ""; */
   let gameActive = false;
   let wrongAnswer = "";
   let correctAnswer = "";
@@ -31,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       const data = await response.json();
       showQuestion(data.results);
-      // console.log(data);
+
     } catch (error) {
       console.log(error, "error");
     };
@@ -43,18 +45,31 @@ document.addEventListener("DOMContentLoaded", function () {
     if (gameActive === true) {
       startWindow.style.display = "none";
       gameWindow.style.display = "flex";
+      loggedIn.style.display = "flex";
       getQuestions();
     };
   };
 
-  startBtn.addEventListener("click", function () {
+ /*  startBtn.addEventListener("click", function () {
     if (input.value === "" || input.value === null) {
       alert("Please enter a name!");
     } else {
-      userName = input.value;
+      userName = input.value.trim();
+      localStorage.setItem("userName", userName);
+      loggedIn.innerText = `Player: ${userName.toUpperCase()}`;
       startGame();
     };
+  }); */
 
+  startBtn.addEventListener("click", function () {
+    let userName = input.value.trim();
+    if (userName) {
+        localStorage.setItem("userName", userName);
+        loggedIn.innerText = `Username: ${userName.toUpperCase()}`;
+        startGame();
+    } else {
+        alert("Please enter your username to start the game.");
+    }
     console.log(userName);
   });
 
@@ -153,6 +168,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById(
       "final-score"
     ).textContent = `Your final score is: ${score}`; // Sätt poängen i popupen
+    localStorage.setItem("mostRecentScore", score);
     document.getElementById("game-over").style.display = "flex";
   };
 
@@ -165,9 +181,14 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("game-over").style.display = "none";
     gameWindow.style.display = "none";
     startWindow.style.display = "flex";
+    loggedIn.style.display = "none";
+    input.value = "";
   };
 
-  document.getElementById("restart-btn").addEventListener("click", restartGame);
+  document.getElementById("restart-btn").addEventListener("click", function() {
+    restartGame(); 
+    // window.location.reload();
+  });
 
   /*-----FUNCTION Instructions Modal-----*/
   function instructionsModal() {

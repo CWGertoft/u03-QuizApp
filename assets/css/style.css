@@ -20,6 +20,26 @@ h1 {
   text-decoration: underline;
 }
 
+header {
+    display: flex;
+    justify-content: center;
+    background-color: var(--background-start);
+    align-items: center;
+}
+
+span#logged-in {
+    display: none;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    color: #FFE1DB;
+    background-color: #156064;
+    padding: 1rem 2rem;
+    margin: 1rem;
+    border-radius: 3.5rem;
+    font-weight: 700;
+}
+
 #start-window {
   height: 100vh;
   display: flex;
@@ -151,11 +171,12 @@ label {
   color: #fff;
 }
 
-#game-over button {
+#game-over button, #clean_leaderboard {
   background-color: rgb(244, 217, 14);
+  color: black;
   margin: 15px 0 0 0;
   padding: 10px;
-  width: 100px;
+  width: fit-content;
   border-radius: 15px;
   border: none;
   transition: 0.3s;
@@ -171,7 +192,7 @@ label {
   padding: 1rem;
   margin: 1rem;
   border-radius: 35px;
-  width: 12vw;
+  width: fit-content;
   text-align: center;
   font-weight: 700;
 }
@@ -216,4 +237,16 @@ label {
 .modulBtn:hover {
   color: yellow;
   cursor: pointer;
+}
+
+#highestResultsList {
+    border: 0.4rem solid rgb(86, 165, 235, 0.25);
+    padding: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+#highestResultsList li {
+    font-size: 1rem;
+    padding-bottom: 1rem;
 }

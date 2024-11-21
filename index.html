@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--New description for better SEO-->
     <meta name="description"
-        content="Looking for a fun way to test your knowledge? Try our Quiz App with unique questions, exciting topics, and hours of entertainment. Play now!">
+        content="Looking for a fun way to test your knowledge? Try our online quiz with unique general knowledge questions. 
+        This interactive quiz is a fun way to challenge your friends and learn new things. Play now!">
 
         <!-- Ska ej använda "keywords" - måste läggas in i en brödtext eller i rubrikerna -->
         <!-- Lägg till open graph meta tags. -->
@@ -16,29 +17,35 @@
     <meta name="author" content="Quiz Project Team - ChasAcademy">
 
     <meta property="og:title" content="Quiz Fun for Everyone - Interactive and Challenging Questions!">
-    <meta property="og:description" content="Looking for a fun way to test your knowledge? Try our Quiz App with unique questions, exciting topics, and hours of entertainment. Play now!">
+    <meta property="og:description" content="Looking for a fun way to test your knowledge? Try our online quiz with unique general knowledge questions. 
+    This interactive quiz is a fun way to challenge your friends and learn new things. Play now!">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="#"> <!-- Lägg till när vi deployat -->
+    <meta property="og:url" content="https://u03-quiz-app-grupp7.netlify.app"> <!-- Lägg till när vi deployat -->
     <meta property="og:image" content="https://ibb.co/kS8NSSZ">
 
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
     <script src="./assets/js/script1.js" defer></script>
-    <!--New description for better SEO-->
+    <script src="./assets/js/localStorage.js" defer></script>
+
+    <!--New title for better SEO-->
     <title>Quiz Fun for Everyone - Interactive and Challenging Questions!</title>
 </head>
 
 <body>
-    <h1>Quiz App</h1>
+    <header>
+        <h1>Buzy Quizzy</h1>
+        <span id="logged-in"></span>
+    </header>
+    
    
     <section id="start-window">
         <h2>Welcome</h2>
          <!--New Paragraph for more description/better SEO-->
-    <p>Challenge your brain and learn new things</p>
+        <p>Challenge your brain and learn new things</p>
         <p id="instructions">Game instructions</p>
         <fieldset>
             <label for="name-input">Please write your name:</label>
@@ -56,14 +63,19 @@
             <li id="option1">Option 1 loading...</li>
             <li id="option2">Option 2 loading...</li>
         </ul>
-
-        <!-- <button id="submit-btn">Next</button> -->
     </section>
 
 
     <section id="game-over" style="display: none;">
         <h2>Game Over</h2>
         <p id="final-score">Your final score is: </p>
+
+        <h2 id="finalScore">LeaderBoard</h2>
+        <ol id="highestResultsList">
+
+        </ol>
+        <a class="btn" id="clean_leaderboard">Clear Leaderboard</a>
+
         <button id="restart-btn">Play Again</button>
 
         <!--<section id="leaderboard">
