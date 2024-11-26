@@ -2,7 +2,6 @@ import { saveToLocalStorage } from "./localStorage.js";
 import { showLeaderBoard } from "./localStorage.js";
 
 document.addEventListener("DOMContentLoaded", function () {
-
   const startWindow = document.getElementById("start-window");
   const gameWindow = document.getElementById("game-window");
   const startBtn = document.getElementById("start-btn");
@@ -22,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let count = 10;
   let countdownInterval;
+  let countdown = document.getElementById("countdown");
 
   let question = document.getElementById("question");
   const option1 = document.getElementById("option1");
@@ -37,11 +37,10 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       const data = await response.json();
       showQuestion(data.results);
-
     } catch (error) {
       console.log(error, "error");
-    };
-  };
+    }
+  }
 
   function startGame() {
     gameActive = true;
@@ -51,10 +50,10 @@ document.addEventListener("DOMContentLoaded", function () {
       gameWindow.style.display = "flex";
       loggedIn.style.display = "flex";
       getQuestions();
-    };
-  };
+    }
+  }
 
- /*  startBtn.addEventListener("click", function () {
+  /*  startBtn.addEventListener("click", function () {
     if (input.value === "" || input.value === null) {
       alert("Please enter a name!");
     } else {
@@ -68,46 +67,44 @@ document.addEventListener("DOMContentLoaded", function () {
   startBtn.addEventListener("click", function () {
     let userName = input.value.trim();
     if (userName) {
-        localStorage.setItem("userName", userName);
-        loggedIn.innerText = `Username: ${userName.toUpperCase()}`;
-        startGame();
+      localStorage.setItem("userName", userName);
+      loggedIn.innerText = `Username: ${userName.toUpperCase()}`;
+      startGame();
     } else {
-        alert("Please enter your username to start the game.");
+      alert("Please enter your username to start the game.");
     }
     console.log(userName);
   });
 
   function showQuestion(data) {
-    if (gameActive === true) {
-      for (let i = 0; i < data.length; i++) {
-        // console.log(data[i].question);
-        if (i === currentQuestion) {
-          question.innerHTML = data[i].question;
+    for (let i = 0; i < data.length; i++) {
+      // console.log(data[i].question);
+      if (i === currentQuestion) {
+        question.innerHTML = data[i].question;
 
-          wrongAnswer = data[i].incorrect_answer;
+        wrongAnswer = data[i].incorrect_answer;
 
-          correctAnswer = data[i].correct_answer;
+        correctAnswer = data[i].correct_answer;
 
-          if (wrongAnswer === "True") {
-            optionTrue = wrongAnswer;
-          } else if (correctAnswer === "True") {
-            optionTrue = correctAnswer;
-          };
+        if (wrongAnswer === "True") {
+          optionTrue = wrongAnswer;
+        } else if (correctAnswer === "True") {
+          optionTrue = correctAnswer;
+        }
 
-          if (wrongAnswer === "False") {
-            optionFalse = wrongAnswer;
-          } else if (correctAnswer === "False") {
-            optionFalse = correctAnswer;
-          };
+        if (wrongAnswer === "False") {
+          optionFalse = wrongAnswer;
+        } else if (correctAnswer === "False") {
+          optionFalse = correctAnswer;
+        }
 
-          option1.innerText = optionTrue;
-          option2.innerText = optionFalse;
-        };
-      };
+        option1.innerText = optionTrue;
+        option2.innerText = optionFalse;
+      }
+    }
 
-      startCountdown();
-    };
-  };
+    timer();
+  }
 
   option1.addEventListener("click", function () {
     //console.log("click");
@@ -117,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Correct");
     } else if (optionTrue === wrongAnswer) {
       console.log("Wrong");
-    };
+    }
 
     currentQuestion++;
 
@@ -125,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
       showGameOver();
     } else {
       getQuestions();
-    };
+    }
   });
 
   option2.addEventListener("click", function () {
@@ -134,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Correct");
     } else if (optionFalse === wrongAnswer) {
       console.log("Wrong");
-    };
+    }
 
     currentQuestion++;
 
@@ -142,43 +139,45 @@ document.addEventListener("DOMContentLoaded", function () {
       showGameOver();
     } else {
       getQuestions();
-    };
+    }
   });
 
-  function startCountdown() {
+  function timer() {
     count = 10; //Återställer räknaren /SJ
-    document.getElementById("countdown").innerText = `Time left: ${count}`;
 
+    startCountdown(count);
     clearInterval(countdownInterval);
 
     countdownInterval = setInterval(() => {
       count--;
-      document.getElementById("countdown").innerText = `Time left: ${count}`;
+      startCountdown(count);
 
       if (count <= 0) {
         clearInterval(countdownInterval);
-        document.getElementById("countdown").innertext = "Time out!";
         currentQuestion++;
         getQuestions();
-
-        if (currentQuestion >= 10) {
-
-          showGameOver();
-        };
-      };
+      }
     }, 1000);
-  };
+  }
+
+  function startCountdown(time) {
+    countdown.textContent = `Time left: ${time}`;
+  }
 
   function showGameOver() {
+    gameWindow.style.display = "none";
+    countdown.style.display = "none";
+    loggedIn.style.display = "none";
+
     localStorage.setItem("mostRecentScore", score);
     document.getElementById(
       "final-score"
     ).textContent = `Your final score is: ${score}`; // Sätt poängen i popupen
-    
+
     saveToLocalStorage();
     showLeaderBoard();
     document.getElementById("game-over").style.display = "flex";
-  };
+  }
 
   function restartGame() {
     score = 0;
@@ -188,13 +187,14 @@ document.addEventListener("DOMContentLoaded", function () {
     gameActive = false;
     document.getElementById("game-over").style.display = "none";
     gameWindow.style.display = "none";
+    countdown.style.display = "flex";
     startWindow.style.display = "flex";
     loggedIn.style.display = "none";
     input.value = "";
-  };
+  }
 
-  document.getElementById("restart-btn").addEventListener("click", function() {
-    restartGame(); 
+  document.getElementById("restart-btn").addEventListener("click", function () {
+    restartGame();
     // window.location.reload();
   });
 
@@ -223,14 +223,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const instructionList = [
         { text: `Enter your name before pressing the 'Start Quiz' to begin.` },
-        { text: `There is a total of 10 questions with the optioins True or False.` },
         {
-          text: `You will have 10 seconds to answer the question before the timer runs out.`},
+          text: `There is a total of 10 questions with the optioins True or False.`,
+        },
         {
-          text: `Once you answer or time runs out, you will automatically move on to the next question`},
+          text: `You will have 10 seconds to answer the question before the timer runs out.`,
+        },
         {
-          text: `Your final score will be displayed at the end of the quiz.`},
-        { text: `Stay focused and enjoy the challenge!`}
+          text: `Once you answer or time runs out, you will automatically move on to the next question`,
+        },
+        {
+          text: `Your final score will be displayed at the end of the quiz.`,
+        },
+        { text: `Stay focused and enjoy the challenge!` },
       ];
 
       const listItems = instructionList.map((item) => {
@@ -263,7 +268,7 @@ document.addEventListener("DOMContentLoaded", function () {
       /*-----Append the modal to the body-----*/
       document.body.appendChild(instructionsDiv);
     });
-  };
+  }
 
   instructionsModal();
 });
