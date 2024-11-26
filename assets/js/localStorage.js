@@ -11,7 +11,7 @@ const highestScores =
       typeof score.result === "number"
   );
 
-const MAX_HIGH_SCORES = 10;
+const MAX_HIGH_SCORES = 5;
 let score;
 
 export function saveToLocalStorage() {
@@ -65,5 +65,17 @@ export function showLeaderBoard() {
     highestResultsList.innerHTML = "";
     clearBtn.style.display = "none";
     highestResultsList.style.display = "none";
+
+    /*-----Update game-over section with different text-----*/
+    const gameOverSection = document.getElementById("game-over");
+    gameOverSection.innerHTML = `
+      <h2>Thanks for participating in our quiz 🙏 </h2>
+      <p>The leaderboard has been cleared.</p>
+      <button id="play-again-btn" class="btn">Play Again</button>
+    `;
+    /*---- Add event listener for the "Play Again" button-----*/
+    const playAgainBtn = document.getElementById("play-again-btn");
+    playAgainBtn.addEventListener("click", restartGame);
+    playAgainBtn.style.cursor = "pointer";
   });
 }

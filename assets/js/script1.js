@@ -158,6 +158,10 @@ document.addEventListener("DOMContentLoaded", function () {
         getQuestions();
       }
     }, 1000);
+
+    if (currentQuestion >= 10) {
+      showGameOver();
+    }
   }
 
   function startCountdown(time) {
@@ -165,6 +169,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function showGameOver() {
+    gameActive = false;
+    clearInterval(countdownInterval);
+    
     gameWindow.style.display = "none";
     countdown.style.display = "none";
     loggedIn.style.display = "none";
