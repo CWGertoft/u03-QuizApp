@@ -1,0 +1,63 @@
+{
+  "results": [
+    {
+      "question": "Instant mashed potatoes were invented by Canadian Edward Asselbergs in 1962.",
+      "correct_answer": "True",
+      "incorrect_answer": "False"
+    },
+
+    {
+      "question": "The scientific name for the Southern Lights is Aurora Australis?",
+      "correct_answer": "True",
+      "incorrect_answer": "False"
+    },
+
+    {
+      "question": "The French word for &quot;glass&quot; is &quot;glace&quot;.",
+      "correct_answer": "False",
+      "incorrect_answer": "True"
+    },
+
+    {
+      "question": "An octopus has seven hearts.",
+      "correct_answer": "False",
+      "incorrect_answer": "True"
+    },
+
+    {
+      "question": "The Atlantic Ocean is the biggest ocean on Earth.",
+      "correct_answer": "False",
+      "incorrect_answer": "True"
+    },
+
+    {
+      "question": "Cucumbers are usually more than 90% water.",
+      "correct_answer": "True",
+      "incorrect_answer": "False"
+    },
+
+    {
+      "question": "Sitting for more than three hours a day can cut two years off a person&#039;s life expectancy.",
+      "correct_answer": "True",
+      "incorrect_answer": "False"
+    },
+
+    {
+      "question": "Baker är från Västerås.",
+      "correct_answer": "True",
+      "incorrect_answer": "False"
+    },
+
+    {
+      "question": "Grid > Flex",
+      "correct_answer": "True",
+      "incorrect_answer": "False"
+    },
+
+    {
+      "question": "AW på Blues varje Torsdag.",
+      "correct_answer": "True",
+      "incorrect_answer": "False"
+    }
+  ]
+}
