@@ -46,3 +46,11 @@ Add difficulty levels.
 Add categories to choose.
 Add more questions.
 Add a progress bar.
+
+## User Stories
+<img width="1698" alt="Skärmavbild 2024-11-27 kl  21 20 37" src="https://github.com/user-attachments/assets/ceccd7c3-5ad1-4e43-bd98-c09784950846">
+
+## Design Skiss
+<img width="580" alt="Skärmavbild 2024-11-27 kl  20 34 50" src="https://github.com/user-attachments/assets/2f23f776-a11e-4cd2-8f8b-d20e90e72efd">
+
+
