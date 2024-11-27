@@ -204,6 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
     restartGame();
     // window.location.reload();
   });
+  
 
   /*-----FUNCTION Instructions Modal-----*/
   function instructionsModal() {

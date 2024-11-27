@@ -1,6 +1,6 @@
 const clearBtn = document.getElementById("clean_leaderboard");
-
 const highestResultsList = document.getElementById("highestResultsList");
+const startBtn = document.getElementById("start-btn");
 
 const highestScores =
   JSON.parse(localStorage.getItem("highestScores")) ||
