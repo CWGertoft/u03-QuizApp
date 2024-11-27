@@ -39,7 +39,7 @@ export function saveToLocalStorage() {
     }
 
     highestScores.sort((a, b) => {
-      if (!a || !b) return 0; // Skip null or undefined values
+      if (!a || !b) return 0;
       return b.result - a.result;
     });
 
@@ -64,18 +64,8 @@ export function showLeaderBoard() {
     highestScores.splice(0, highestScores.length);
     highestResultsList.innerHTML = "";
     clearBtn.style.display = "none";
+    const finalScore = document.getElementById("finalScore");
+    finalScore.style.display = "none";
     highestResultsList.style.display = "none";
-
-    /*-----Update game-over section with different text-----*/
-    const gameOverSection = document.getElementById("game-over");
-    gameOverSection.innerHTML = `
-      <h2>Thanks for participating in our quiz 🙏 </h2>
-      <p>The leaderboard has been cleared.</p>
-      <button id="play-again-btn" class="btn">Play Again</button>
-    `;
-    /*---- Add event listener for the "Play Again" button-----*/
-    const playAgainBtn = document.getElementById("play-again-btn");
-    playAgainBtn.addEventListener("click", restartGame);
-    playAgainBtn.style.cursor = "pointer";
   });
 }
