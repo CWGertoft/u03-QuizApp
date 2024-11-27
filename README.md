@@ -10,6 +10,16 @@
 
 ## Overview
 This is an interactive quiz app where the user can be challenged with general questions and answer them with true or false answers. There are 10 different questions across various topics and the timer set to 10 seconds to each question. If the question is not answered on time, and the player will be transfered to next one, the answer be counted as false. The result is tracked through the quiz and it is displayed at the end of the game together with the leaderboard.
+
+### Smartphone view
+![smartphone-view](assets/image/smartphone.png)
+
+### Touchpad view
+![touchpad-view](assets/image/touchpad.png)
+
+### Desktop view
+![desktop-view](assets/image/desktop.png)
+
 ## Features
 Welcome page:
 Enter your name to start the quiz.
