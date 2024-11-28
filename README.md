@@ -1,5 +1,7 @@
 # Buzy Quizzy App
 
+![Buzy Quizzy](assets/image/BuzyQuizzy.png)
+
 ## Grupp 7
 - Sara
 - Antonio
@@ -7,6 +9,9 @@
 - William
 - Aleksa
 
+The link to the application can be found deployed on [GitHub Pages](https://cwgertoft.github.io/u03-QuizApp/).
+
+The link to our Github repository's [Github Repo](https://github.com/CWGertoft/u03-QuizApp).
 
 ## Overview
 This is an interactive quiz app where the user can be challenged with general questions and answer them with true or false answers. There are 10 different questions across various topics and the timer set to 10 seconds to each question. If the question is not answered on time, and the player will be transfered to next one, the answer be counted as false. The result is tracked through the quiz and it is displayed at the end of the game together with the leaderboard.
