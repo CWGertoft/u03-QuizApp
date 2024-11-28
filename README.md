@@ -60,11 +60,15 @@ Responsive design: Quiz app works well on all devices, from mobile to desktop.
 Semantic HTML: Helps search engines to understand the content.
 ## Disadvantages
 Limited answers. Multiple answer-choice can be added.
+Better feedback.
+Limited questions variety.
+
 ## Future improvements
 Add difficulty levels.
 Add categories to choose.
-Add more questions.
 Add a progress bar.
+More modern design & better color contrast.
+Better user experience.
 
 ## User Stories
 <img width="1698" alt="Skärmavbild 2024-11-27 kl  21 20 37" src="https://github.com/user-attachments/assets/ceccd7c3-5ad1-4e43-bd98-c09784950846">
